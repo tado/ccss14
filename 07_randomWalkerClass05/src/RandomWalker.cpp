@@ -1,10 +1,12 @@
 #include "RandomWalker.h"
 
 RandomWalker::RandomWalker(){
-
-    //初期位置を、画面内にランダムに設定
+    
+    //初期位置を画面中心に
     position.x = ofGetWidth()/2.0;
     position.y = ofGetHeight()/2.0;
+    
+    //移動確率をランダムに
     left = ofRandom(0.9, 1.0);
     right = ofRandom(0.9, 1.0);
     top = ofRandom(0.9, 1.0);
