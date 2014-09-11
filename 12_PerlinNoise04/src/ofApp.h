@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxVboParticles.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
     
@@ -19,6 +20,9 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+    void scaleXChanged(float & scaleX);
+    void scaleYChanged(float & scaleY);
+    void updateNoise();
     
     int width, height;
 	
@@ -27,4 +31,10 @@ public:
 
     int particleNum;
     ofxVboParticles *particles;
+    
+    ofxPanel gui;
+    ofxFloatSlider scaleX;
+    ofxFloatSlider scaleY;
+    ofxFloatSlider speed;
+    ofxFloatSlider friction;
 };
