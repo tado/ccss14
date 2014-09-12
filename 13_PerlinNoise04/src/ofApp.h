@@ -5,12 +5,12 @@
 #include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
-    
+
 public:
     void setup();
     void update();
     void draw();
-    
+
     void keyPressed(int key);
     void keyReleased(int key);
     void mouseMoved(int x, int y );
@@ -23,15 +23,15 @@ public:
     void scaleXChanged(float & scaleX);
     void scaleYChanged(float & scaleY);
     void updateNoise();
-    
+
     int width, height;
-	
+
     ofImage myImage;
 	unsigned char * pixels;
 
     int particleNum;
     Particles *particles;
-    
+
     ofxPanel gui;
     ofxFloatSlider scaleX;
     ofxFloatSlider scaleY;

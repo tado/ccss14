@@ -171,6 +171,12 @@
 		<Unit filename="icon.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+		<Unit filename="src/Particles.cpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/Particles.h">
+			<Option virtualFolder="src/" />
+		</Unit>
 		<Unit filename="src/main.cpp">
 			<Option virtualFolder="src" />
 		</Unit>
@@ -180,8 +186,6 @@
 		<Unit filename="src/ofApp.h">
 			<Option virtualFolder="src" />
 		</Unit>
-		<Unit filename="src/ofxVboParticles.cpp" />
-		<Unit filename="src/ofxVboParticles.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
