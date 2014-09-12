@@ -6,7 +6,7 @@ public:
     Particles(int maxParticles);
     void update();
     void draw();
-    void addParticle(ofVec2f position = ofVec2f(0, 0),
+    void addParticle(ofVec2f position,
                      ofVec2f velocity = ofVec2f(0, 0),
                      ofColor color = 0xffffff);
     void resetForce();
@@ -24,4 +24,6 @@ public:
     deque<ofVec2f> forces;
     deque<ofColor> colors;
     float friction;
+    
+    ofVboMesh mesh;
 };

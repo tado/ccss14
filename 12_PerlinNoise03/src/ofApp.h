@@ -27,5 +27,5 @@ public:
 
     int particleNum;
     Particles *particles;
-    ofVboMesh mesh;
+    //ofVboMesh mesh;
 };

@@ -11,10 +11,10 @@ void ofApp::setup(){
     myImage.allocate(width, height, OF_IMAGE_GRAYSCALE);
     pixels = myImage.getPixels();
     
+    float scaleX = ofRandom(3.0, 10.0);
+    float scaleY = ofRandom(3.0, 10.0);
     for (int j = 0; j < height; j++) {
         for (int i = 0; i < width; i++) {
-            float scaleX = 5;
-            float scaleY = 5;
             float noiseX = ofMap(i, 0, width, 0, scaleX);
             float noiseY = ofMap(j, 0, width, 0, scaleY);
             int noiseVal = ofNoise(noiseX, noiseY) * 255;
@@ -23,7 +23,7 @@ void ofApp::setup(){
     }
     myImage.update();
     
-    particleNum = 20000;
+    particleNum = 40000;
     particles = new Particles(particleNum);
     particles->friction = 0.015;
     
@@ -31,7 +31,7 @@ void ofApp::setup(){
         ofVec3f position = ofVec3f(ofRandom(width), ofRandom(height));
         particles->addParticle(position);
     }
-    mesh.setMode(OF_PRIMITIVE_POINTS);
+    //mesh.setMode(OF_PRIMITIVE_POINTS);
 }
 
 //--------------------------------------------------------------
@@ -41,10 +41,10 @@ void ofApp::update(){
     particles->resetForce();
     for (int i = 0; i < particleNum; i++) {
         int val = pixels[int(particles->positions[i].y) * width + int(particles->positions[i].x)];
-		int angle = ofMap(val, 0, 255, 0, PI*2.0);
-		ofVec3f force;
-		force.x = cos(angle) * speed;
-		force.y = sin(angle) * speed;
+        int angle = ofMap(val, 0, 255, 0, PI*2.0);
+        ofVec3f force;
+        force.x = cos(angle) * speed;
+        force.y = sin(angle) * speed;
         particles->addForce(i, force);
     }
     particles->addDampingForce();
@@ -56,16 +56,9 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetColor(127);
     myImage.draw(0, 0);
-
+    
     ofSetColor(255);
-    mesh.clear();
-    for (int j = 0; j < 5; j++) {
-        for (int i = 0; i < particleNum; i++) {
-            mesh.addVertex(ofVec3f(particles->positions[i].x, particles->positions[i].y));
-            mesh.addColor(ofFloatColor(1.0,1.0,1.0));
-        }
-    }
-    mesh.draw();
+    particles->draw();
 }
 
 //--------------------------------------------------------------
@@ -95,7 +88,17 @@ void ofApp::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    
+    float scaleX = ofRandom(3.0, 10.0);
+    float scaleY = ofRandom(3.0, 10.0);
+    for (int j = 0; j < height; j++) {
+        for (int i = 0; i < width; i++) {
+            float noiseX = ofMap(i, 0, width, 0, scaleX);
+            float noiseY = ofMap(j, 0, width, 0, scaleY);
+            int noiseVal = ofNoise(noiseX, noiseY) * 255;
+            pixels[j * width + i] = noiseVal;
+        }
+    }
+    myImage.update();
 }
 
 //--------------------------------------------------------------

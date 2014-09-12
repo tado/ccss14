@@ -4,6 +4,7 @@ Particles::Particles(int _maxParticles){
     maxParticles = _maxParticles;
     numParticles = 0;
     friction = 0.01;
+    mesh.setMode(OF_PRIMITIVE_POINTS);
 }
 
 void Particles::resetForce(){
@@ -61,7 +62,12 @@ void Particles::update(){
 }
 
 void Particles::draw(){
-
+    mesh.clear();
+    for (int i = 0; i < positions.size(); i++) {
+        mesh.addVertex(ofVec3f(positions[i].x, positions[i].y));
+        mesh.addColor(ofFloatColor(1.0,1.0,1.0));
+    }
+    mesh.draw();
 }
 
 void Particles::addParticle(ofVec2f _position, ofVec2f _velocity, ofColor _color){
