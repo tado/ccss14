@@ -13,7 +13,7 @@ void ofApp::setup(){
     pixels = myImage.getPixels();
     
     particleNum = 40000;
-    particles = new ofxVboParticles(particleNum);
+    particles = new Particles(particleNum);
     
     for (int i = 0; i < particleNum; i++) {
         ofVec3f position = ofVec3f(ofRandom(width), ofRandom(height));
