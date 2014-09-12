@@ -9,17 +9,8 @@ void ofApp::setup(){
     width = ofGetWidth();
     height = ofGetHeight();
     
-    myImage.allocate(ofGetWidth(), ofGetHeight(), OF_IMAGE_GRAYSCALE);
+    myImage.allocate(width, height, OF_IMAGE_GRAYSCALE);
     pixels = myImage.getPixels();
-    
-    particleNum = 30000;
-    particles = new ofxVboParticles(particleNum);
-    particles->friction = 0.015;
-    
-    for (int i = 0; i < particleNum; i++) {
-        ofVec3f position = ofVec3f(ofRandom(width), ofRandom(height));
-        particles->addParticle(position);
-    }
     
     for (int j = 0; j < height; j++) {
         for (int i = 0; i < width; i++) {
@@ -32,6 +23,15 @@ void ofApp::setup(){
         }
     }
     myImage.update();
+    
+    particleNum = 30000;
+    particles = new ofxVboParticles(particleNum);
+    particles->friction = 0.015;
+    
+    for (int i = 0; i < particleNum; i++) {
+        ofVec3f position = ofVec3f(ofRandom(width), ofRandom(height));
+        particles->addParticle(position);
+    }
 }
 
 //--------------------------------------------------------------
