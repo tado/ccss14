@@ -9,6 +9,9 @@ openFrameworksUniversal.a
 libs/openFrameworksCompiled/lib/*/*
 !libs/openFrameworksCompiled/lib/*/.gitkeep
 
+*.dll
+*.exe
+
 # apothecary
 scripts/apothecary/build
 
