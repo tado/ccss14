@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxVboParticles.h"
+#include "Particles.h"
 
 class ofApp : public ofBaseApp{
     
@@ -26,5 +26,6 @@ public:
 	unsigned char * pixels;
 
     int particleNum;
-    ofxVboParticles *particles;
+    Particles *particles;
+    ofVboMesh mesh;
 };

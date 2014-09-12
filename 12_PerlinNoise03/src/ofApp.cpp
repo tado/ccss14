@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetFrameRate(60);
-    ofSetBackgroundAuto(false);
     ofBackground(0);
     
     width = ofGetWidth();
@@ -24,14 +23,15 @@ void ofApp::setup(){
     }
     myImage.update();
     
-    particleNum = 30000;
-    particles = new ofxVboParticles(particleNum);
+    particleNum = 20000;
+    particles = new Particles(particleNum);
     particles->friction = 0.015;
     
     for (int i = 0; i < particleNum; i++) {
         ofVec3f position = ofVec3f(ofRandom(width), ofRandom(height));
         particles->addParticle(position);
     }
+    mesh.setMode(OF_PRIMITIVE_POINTS);
 }
 
 //--------------------------------------------------------------
@@ -48,19 +48,24 @@ void ofApp::update(){
         particles->addForce(i, force);
     }
     particles->addDampingForce();
-    particles->resetOffWalls();
     particles->updatePos();
+    particles->resetOffWalls();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    ofSetColor(0, 7);
-    ofRect(0, 0, width, height);
-    
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofSetColor(127);
+    myImage.draw(0, 0);
+
     ofSetColor(255);
-    particles->draw();
+    mesh.clear();
+    for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < particleNum; i++) {
+            mesh.addVertex(ofVec3f(particles->positions[i].x, particles->positions[i].y));
+            mesh.addColor(ofFloatColor(1.0,1.0,1.0));
+        }
+    }
+    mesh.draw();
 }
 
 //--------------------------------------------------------------
